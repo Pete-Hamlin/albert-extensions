@@ -53,7 +53,7 @@ def handleQuery(query):
                     for type, data in result.items():
                         try:
                             if type == 'videoRenderer':
-                                id = data['videoId']
+                                uid = data['videoId']
                                 subtext = 'Video'
                                 if 'lengthText' in data:
                                     subtext = subtext + " | %s" % data['lengthText']['simpleText'].strip()
@@ -61,17 +61,20 @@ def handleQuery(query):
                                     subtext = subtext + " | %s" % data['shortViewCountText']['simpleText'].strip()
                                 if 'publishedTimeText' in data:
                                     subtext = subtext + " | %s" % data['publishedTimeText']['simpleText'].strip()
+                                command = 'youtube-dl --extract-audio --audio-format mp3 %s' % uid
                                 actions = [ 
-                                    ProcAction("Download from Youtube", ['youtube-dl', '--extract-audio', '--audio-format', 'mp3', 'https://youtube.com/watch?v=%s' % id]) 
+                                    TermAction("Command", ['echo %s' % command]),
+                                    TermAction("Download mp3", ['youtube-dl --extract-audio --audio-format mp3 %s' % uid]), 
+                                    TermAction("Download Video", ['youtube-dl %s' % uid])
                                     ]
-                                # actions = [UrlAction('Watch on Youtube', 'https://youtube.com/watch?v=%s' % id)]
+                                # actions = [UrlAction('Watch on Youtube', 'https://youtube.com/watch?v=%s' % uid)]
                             else:
                                 continue
                         except Exception as e:
                             critical(e)
                             critical(json.dumps(result, indent=4))
 
-                        item = Item(id=__prettyname__,
+                        item = Item(uid=__prettyname__,
                                     icon=data['thumbnail']['thumbnails'][0]['url'].split('?', 1)[0] if data['thumbnail']['thumbnails'] else __icon__,
                                     text=data['title']['simpleText'],
                                     subtext=subtext,
