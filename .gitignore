@@ -1,3 +1,5 @@
 .venv
 notes.md
 **/.ropeproject
+test/mocks/mock_list.json
+**/__pycache__

@@ -2,11 +2,11 @@ A selection of extensions written for the launcher [Albert](). It goes without s
 
 These extensions currently consist of:
 * **Youtube-dl** - Based off the existing YouTube extension, this will allow you to download youtube videos directly from albert, both in mp3 (audio) and mp4 (video) format.
-* **Pocket** - This extension will allow you to browse and select you saved links from the [Pocket]() application.
+* **Pocket** - This extension will allow you to browse and select you saved links from the [Pocket]() web application.
 
 ## Installation
 
-Copy the extensions you want to use into ` `. ALternatively if you want to use all of them, you can simple run the `install.sh` file in this repo
+Copy the extensions you want to use into ` `. Alternatively if you want to use all of them, you can simple run the `install.sh` file in this repo
 
 ## Setup
 
