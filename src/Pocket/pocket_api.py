@@ -1,3 +1,8 @@
+"""
+Contains the various functions and methods required to access the Pocket api
+"""
+
+
 import json
 import webbrowser
 from os import path
@@ -88,9 +93,16 @@ def authenticate():
     token = token_request(code)
     with open(TOKEN_PATH, 'w') as file:
         file.write(token)
+    return token
 
 
 def get_list():
+    """
+    Goes out to Pocket API and fetches the list of user's saved items. Returns this as a dictionary
+    Returns:
+        [dictionary] -- [Parsed JSON list of user's read later items]
+    """
+
     with open(TOKEN_PATH, 'r') as file:
         token = file.readline()
     params = {
@@ -103,3 +115,5 @@ def get_list():
     if response.status_code == 200:
         result_list = response.json()
         return result_list['list']
+    else:
+        return response
