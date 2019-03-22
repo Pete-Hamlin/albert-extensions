@@ -32,8 +32,20 @@ def handleQuery(query):
     item_list = get_list()
     for key, item in item_list.items():
         if query.string in item['given_url']:
-            info('Matched {}'.format(item['given_url']))
+            debug('Matched URL {}'.format(item['given_url']))
             items.append(append_item(item))
+        # Match authors
+        if 'authors' in item:
+            for key, author in item['authors'].items():
+                if query.string in author['name']:
+                    info('Matched author {}'.format(author['name']))
+                    items.append(append_item(item))
+        # Match tags
+        if 'tags' in item:
+            for key, tag in item['tags'].items():
+                if query.string in tag['tag']:
+                    info('Matched tag {}'.format(tag['tag']))
+                    items.append(append_item(item))
 
     item = Item(id=__prettyname__,
                 icon=__icon__,
