@@ -5,9 +5,9 @@ Allows searching of Pocket reading list via the launcher. You will first be requ
 import webbrowser
 import json
 
-
 from os import path
 from time import sleep
+from pathlib import Path
 
 import requests
 from albertv0 import *
@@ -19,6 +19,9 @@ __version__ = '1.0'
 __trigger__ = 'pk '
 __author__ = 'Pete Hamlin'
 __icon__ = '{}/icon.svg'.format(path.dirname(__file__))
+config_icon = iconLookup('settings')
+if not config_icon:
+    config_icon = __icon__
 
 def handleQuery(query):
     if not query.isTriggered:
@@ -27,7 +30,9 @@ def handleQuery(query):
     items = []
     # if not query.isValid:
     #     return
-
+    if not Path(TOKEN_PATH).is_file():
+        authenticate()
+        return
     sleep(0.2)
     item_list = get_list()
     for key, item in item_list.items():
@@ -51,7 +56,7 @@ def handleQuery(query):
                     continue
 
     item = Item(id=__prettyname__,
-                icon=__icon__,
+                icon=config_icon,
                 text="(Re)Authenticate",
                 subtext="Attempt to (re)generate auth token from Pocket API",
                 completion=__trigger__,
@@ -78,6 +83,7 @@ def append_item(value):
         for key, tag in value['tags'].items():
             subtext = subtext + " | {}".format(tag['tag'])
     item = Item(id=__prettyname__,
+                icon=__icon__,
                 text=text,
                 subtext=subtext,
                 actions=actions

@@ -7,6 +7,7 @@ import json
 import webbrowser
 from os import path
 from time import sleep
+from pathlib import Path
 
 import requests
 
@@ -102,7 +103,6 @@ def get_list():
     Returns:
         [dictionary] -- [Parsed JSON list of user's read later items]
     """
-
     with open(TOKEN_PATH, 'r') as file:
         token = file.readline()
     params = {
