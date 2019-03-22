@@ -11,6 +11,7 @@ from time import sleep
 
 import requests
 from albertv0 import *
+from .pocket_api import *
 
 __iid__ = 'PythonInterface/v0.1'
 __prettyname__ = 'Pocket'
@@ -35,24 +36,29 @@ def handleQuery(query):
                 urgency=ItemBase.Alert,
                 actions=[
                     FuncAction(text="FuncAction",
-                                callable=lambda: critical(query.string)),
-                    ClipAction(text="ClipAction",
-                                clipboardText="blabla"),
+                               callable=lambda: authenticate()),
                     UrlAction(text="UrlAction",
-                                url="https://www.google.de"),
+                               url="https://www.google.de"),
                     ProcAction(text="ProcAction",
-                                commandline=["espeak", "hello"],
-                                cwd="~"),  # optional
+                               commandline=["espeak", "hello"],
+                               cwd="~"),  # optional
                     TermAction(text="TermAction",
-                                commandline=["sleep", "5"],
-                                cwd="~/git")  # optional
+                               commandline=["sleep", "5"],
+                               cwd="~/git")  # optional
                 ])
     items.append(item)
+    sleep(0.2)
+    item_list = get_list()
+    for key, item in item_list.items():
+        if query.string in item['given_url']:
+            info(item)
+            # items.append(append_item(item))
     return items
 
 def append_item(value):
     actions = [UrlAction("Open in browser", value['given_url'])]
     subtext = "{}...".format(value['given_title'][:30])
+    if value['top_image_url']
     if 'authors' in value:
         for key, author in value['authors'].items():
             subtext = subtext + " | {}".format(author['name'])
