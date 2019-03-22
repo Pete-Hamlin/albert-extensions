@@ -28,6 +28,13 @@ def handleQuery(query):
     # if not query.isValid:
     #     return
 
+    sleep(0.2)
+    item_list = get_list()
+    for key, item in item_list.items():
+        if query.string in item['given_url']:
+            info('Matched {}'.format(item['given_url']))
+            items.append(append_item(item))
+
     item = Item(id=__prettyname__,
                 icon=__icon__,
                 text="(Re)Authenticate",
@@ -47,27 +54,24 @@ def handleQuery(query):
                                cwd="~/git")  # optional
                 ])
     items.append(item)
-    sleep(0.2)
-    item_list = get_list()
-    for key, item in item_list.items():
-        if query.string in item['given_url']:
-            info(item)
-            # items.append(append_item(item))
     return items
 
 def append_item(value):
     actions = [UrlAction("Open in browser", value['given_url'])]
-    subtext = "{}...".format(value['given_title'][:30])
-    if value['top_image_url']
+    subtext = "{}...".format(value['given_url'][:30])
+    if 'given_title' in value and value['given_title']:
+        text = value['given_title'][:60]
+    else:
+        text = value['given_url'][:60]
     if 'authors' in value:
         for key, author in value['authors'].items():
             subtext = subtext + " | {}".format(author['name'])
     if 'tags' in value:
         for key, tag in value['tags'].items():
             subtext = subtext + " | {}".format(tag['tag'])
-    item = Item(uid=__prettyname__,
-                icon=value['top_image_url'] if value['top_image_url'] else __icon__,
-                text=value['given_url'],
+    item = Item(id=__prettyname__,
+                icon=__icon__,
+                text=text,
                 subtext=subtext,
                 actions=actions
                )
