@@ -1,0 +1,113 @@
+{
+    "status": 1,
+    "complete": 1,
+    "list": {
+        "237938806": {
+            "item_id": "237938806",
+            "resolved_id": "237938806",
+            "given_url": "https://getpocket.com/developer/docs/v3/retrieve",
+            "given_title": "Pocket Developer Program: Pocket API: Retrieve",
+            "favorite": "0",
+            "status": "0",
+            "time_added": "1549891184",
+            "time_updated": "1551963013",
+            "time_read": "0",
+            "time_favorited": "0",
+            "sort_id": 1,
+            "resolved_title": "Retrieve",
+            "resolved_url": "https://getpocket.com/developer/docs/v3/retrieve",
+            "excerpt": "Pocket's /v3/get endpoint is a single call that is incredibly versatile. A few examples of the types of requests you can make: In order to use the /v3/get endpoint, your consumer key must have the \"Retrieve\" permission.",
+            "is_article": "1",
+            "is_index": "0",
+            "has_video": "0",
+            "has_image": "0",
+            "word_count": "858",
+            "lang": "en",
+            "time_to_read": 4,
+            "domain_metadata": {
+                "name": "Pocket",
+                "logo": "https://logo.clearbit.com/getpocket.com?size=800",
+                "greyscale_logo": "https://logo.clearbit.com/getpocket.com?size=800&greyscale=true"
+            },
+            "listen_duration_estimate": 332
+        },
+        "468329629": {
+            "item_id": "468329629",
+            "resolved_id": "468329629",
+            "given_url": "http://www.tecspy.com/mick/2x2x2.pdf",
+            "given_title": "2x2x2.pdf",
+            "favorite": "0",
+            "status": "0",
+            "time_added": "1550074367",
+            "time_updated": "1550074367",
+            "time_read": "0",
+            "time_favorited": "0",
+            "sort_id": 0,
+            "resolved_title": "",
+            "resolved_url": "http://www.tecspy.com/mick/2x2x2.pdf",
+            "excerpt": "",
+            "is_article": "0",
+            "is_index": "0",
+            "has_video": "0",
+            "has_image": "0",
+            "word_count": "0",
+            "lang": "",
+            "listen_duration_estimate": 0
+        },
+        "2455349752": {
+            "item_id": "2455349752",
+            "resolved_id": "2455349752",
+            "given_url": "https://zendev.com/2019/01/15/frontend-development-topics-to-learn-in-2019.html",
+            "given_title": "Top 5 Front End Development Topics to Learn in 2019",
+            "favorite": "0",
+            "status": "0",
+            "time_added": "1547570511",
+            "time_updated": "1547715049",
+            "time_read": "0",
+            "time_favorited": "0",
+            "sort_id": 2,
+            "resolved_title": "Top 5 Frontend Development Topics To Learn in 2019",
+            "resolved_url": "https://zendev.com/2019/01/15/frontend-development-topics-to-learn-in-2019.html",
+            "excerpt": "Ah, January. For making new goals and resolutions.",
+            "is_article": "1",
+            "is_index": "0",
+            "has_video": "0",
+            "has_image": "1",
+            "word_count": "922",
+            "lang": "en",
+            "time_to_read": 4,
+            "top_image_url": "https://zendev.com/assets/img/posts/learning-in-2019/learning-the-latest.jpg",
+            "authors": {
+                "92550547": {
+                    "item_id": "2455349752",
+                    "author_id": "92550547",
+                    "name": "KBall",
+                    "url": "https://zendev.com/authors/kball.html"
+                }
+            },
+            "image": {
+                "item_id": "2455349752",
+                "src": "https://zendev.com/assets/img/posts/learning-in-2019/learning-the-latest.jpg",
+                "width": "0",
+                "height": "0"
+            },
+            "images": {
+                "1": {
+                    "item_id": "2455349752",
+                    "image_id": "1",
+                    "src": "https://zendev.com/assets/img/posts/learning-in-2019/learning-the-latest.jpg",
+                    "width": "0",
+                    "height": "0",
+                    "credit": "",
+                    "caption": ""
+                }
+            },
+            "listen_duration_estimate": 357
+        }
+    },
+    "error": null,
+    "search_meta": {
+        "search_type": "normal"
+    },
+    "since": 1551963556
+}

@@ -3,4 +3,4 @@
 
 DIR=$HOME/.local/share/albert/org.albert.extension.python/modules/
 
-cp -r src/* $DIR
+cp -r **/src/* $DIR

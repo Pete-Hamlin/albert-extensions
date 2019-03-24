@@ -3,4 +3,4 @@ notes.md
 **/.ropeproject
 test/mocks/mock_list.json
 **/__pycache__
-src/Pocket/token.conf
+**/token.conf

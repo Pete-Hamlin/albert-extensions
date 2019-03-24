@@ -63,9 +63,9 @@ def handleQuery(query):
                                     subtext = subtext + " | %s" % data['publishedTimeText']['simpleText'].strip()
                                 command = 'youtube-dl --extract-audio --audio-format mp3 %s' % uid
                                 actions = [ 
-                                    TermAction("Command", ['echo %s' % command]),
-                                    TermAction("Download mp3", ['youtube-dl --extract-audio --audio-format mp3 %s' % uid]), 
-                                    TermAction("Download Video", ['youtube-dl %s' % uid])
+                                    TermAction("Command", ['echo {}'.format(command)]),
+                                    TermAction("Download mp3", ['youtube-dl --extract-audio --audio-format mp3 {}'.format(uid)]), 
+                                    TermAction("Download Video", ['youtube-dl {}'.format(uid)])
                                     ]
                                 # actions = [UrlAction('Watch on Youtube', 'https://youtube.com/watch?v=%s' % uid)]
                             else:
