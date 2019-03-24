@@ -3,8 +3,9 @@
 A selection of extensions written for the launcher [Albert](https://albertlauncher.github.io/). It goes without saying you will neeed to [install it first](https://albertlauncher.github.io/docs/installing/) before any of these will work.
 
 These extensions currently consist of:
-* **Youtube-dl** - Based off the existing YouTube extension, this will allow you to download youtube videos directly from albert, both in mp3 (audio) and mp4 (video) format.
 * **Pocket** - This extension will allow you to browse and select you saved links from the [Pocket](https://getpocket.com) web application.
+* **Youtube-dl** - Based off the existing YouTube extension, this will allow you to download youtube videos directly from albert, both in mp3 (audio) and mp4 (video) format.
+**CURRENTLY NOT WORKING DO NOT USE!**
 
 ## Installation
 
