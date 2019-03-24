@@ -18,7 +18,10 @@ __version__ = '1.0'
 __trigger__ = 'ytdl '
 __author__ = 'Pete Hamlin'
 __dependencies__ = ['youtube-dl']
-__icon__ = iconLookup('youtube')  # path.dirname(__file__) + '/icons/YouTube.png'
+__icon__ = iconLookup('youtube')  
+
+if not __icon__:
+    __icon__ = '{}/icon.svg'.format(path.dirname(__file__))
 
 if which("youtube-dl") is None:
     raise Exception("'youtube-dl' is not in $PATH.")
