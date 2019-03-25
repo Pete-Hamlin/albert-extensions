@@ -1,0 +1,6 @@
+* Add new AppId to allow modifying entries []
+* Allow archiving/unarchiving []
+* Allow favouriting/unfavouriting []
+* Allow deletion []
+* Order results based on Favourite/Unarchived/Archived []
+* New icons for Favourite/Unarchived/Archived results []

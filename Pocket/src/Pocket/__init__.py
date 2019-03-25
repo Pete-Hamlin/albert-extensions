@@ -2,14 +2,10 @@
 Allows searching of Pocket reading list via the launcher. You will first be required to run the authenticate action before you can query your list.
 """
 
-import webbrowser
-import json
-
 from os import path
 from time import sleep
 from pathlib import Path
 
-import requests
 from albertv0 import *
 from .pocket_api import *
 
