@@ -66,19 +66,20 @@ def handleQuery(query):
                                     subtext = subtext + " | %s" % data['publishedTimeText']['simpleText'].strip()
                                 command = 'youtube-dl --extract-audio --audio-format mp3 %s' % uid
                                 actions = [ 
-                                    TermAction("Command", ['echo {}'.format(command)]),
-                                    TermAction("Download mp3", ['youtube-dl --extract-audio --audio-format mp3 {}'.format(uid)]), 
-                                    TermAction("Download Video", ['youtube-dl {}'.format(uid)])
+                                    TermAction(text="Download mp3", commandline=['youtube-dl', '--extract-audio' '--audio-format',
+                                    'mp3',
+                                    'https://www.youtube.com/watch?v={}'.format(uid)], cwd='$HOME/Music'),
+                                    TermAction(text="Download Video", commandline=['youtube-dl', '{}'.format(uid)], cwd='$HOME/Videos'),
+                                    FuncAction(text="Command", callable=lambda: print(command)),
                                     ]
-                                # actions = [UrlAction('Watch on Youtube', 'https://youtube.com/watch?v=%s' % uid)]
                             else:
                                 continue
                         except Exception as e:
                             critical(e)
                             critical(json.dumps(result, indent=4))
 
-                        item = Item(uid=__prettyname__,
-                                    icon=data['thumbnail']['thumbnails'][0]['url'].split('?', 1)[0] if data['thumbnail']['thumbnails'] else __icon__,
+                        item = Item(id=__prettyname__,
+                                    icon=__icon__,
                                     text=data['title']['simpleText'],
                                     subtext=subtext,
                                     completion=query.rawString,
