@@ -30,42 +30,40 @@ def handleQuery(query):
     items = []
     # if not query.isValid:
     #     return
-    if not Path(TOKEN_PATH).is_file():
-        authenticate()
-        return
-    sleep(0.2)
-    item_list = get_list()
-    for key, item in item_list.items():
-        if query.string in item['given_url']:
-            debug('Matched URL {}'.format(item['given_url']))
-            items.append(append_item(item))
-            continue
-        # Match authors
-        if 'authors' in item:
-            for key, author in item['authors'].items():
-                if query.string in author['name']:
-                    debug('Matched author {}'.format(author['name']))
-                    items.append(append_item(item))
-                    continue
-        # Match tags
-        if 'tags' in item:
-            for key, tag in item['tags'].items():
-                if query.string in tag['tag']:
-                    debug('Matched tag {}'.format(tag['tag']))
-                    items.append(append_item(item))
-                    continue
+    if Path(TOKEN_PATH).is_file():
+        sleep(0.2)
+        item_list = get_list()
+        for key, item in item_list.items():
+            if query.string in item['given_url']:
+                debug('Matched URL {}'.format(item['given_url']))
+                items.append(append_item(item))
+                continue
+            # Match authors
+            if 'authors' in item:
+                for key, author in item['authors'].items():
+                    if query.string in author['name']:
+                        debug('Matched author {}'.format(author['name']))
+                        items.append(append_item(item))
+                        continue
+            # Match tags
+            if 'tags' in item:
+                for key, tag in item['tags'].items():
+                    if query.string in tag['tag']:
+                        debug('Matched tag {}'.format(tag['tag']))
+                        items.append(append_item(item))
+                        continue
 
-    item = Item(id=__prettyname__,
+    config = Item(id=__prettyname__,
                 icon=config_icon,
-                text="(Re)Authenticate",
-                subtext="Attempt to (re)generate auth token from Pocket API",
+                text="Configuration",
+                subtext="Reauthenticate with server or scrap existing token",
                 completion=__trigger__,
                 urgency=ItemBase.Alert,
                 actions=[
-                    FuncAction(text="FuncAction",
-                               callable=lambda: authenticate())
-                                ])
-    items.append(item)
+                    FuncAction(text="Authenticate", callable=lambda: authenticate()),
+                    FuncAction(text="Delete token", callable=lambda: delete_auth_token())
+                    ])
+    items.append(config)
     return items
 
 def append_item(value):

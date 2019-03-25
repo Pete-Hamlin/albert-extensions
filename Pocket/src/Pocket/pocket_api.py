@@ -5,13 +5,14 @@ Contains the various functions and methods required to access the Pocket api
 
 import json
 import webbrowser
-from os import path
+from os import path, remove
 from time import sleep
 from pathlib import Path
 
 import requests
+from albertv0 import *
 
-CONSUMER_KEY = '84233-56b6150ff55b2626c93016b1'
+CONSUMER_KEY = '84882-d229ad8baf5f51a460853daf'
 REDIRECT_URL = 'localhost'
 TOKEN_PATH = '{}/token.conf'.format(path.dirname(__file__))
 HEADERS = {
@@ -30,7 +31,6 @@ def get_auth_code():
     Returns:
         String -- Auth code from Pockt server
     """
-
     payload = {
         'consumer_key': CONSUMER_KEY,
         'redirect_uri': REDIRECT_URL
@@ -44,13 +44,23 @@ def get_auth_code():
     return code['code']
 
 
+def delete_auth_token():
+    """
+    Delete current auth token to allow generating a new one
+    """
+    if Path(TOKEN_PATH).is_file():
+        remove(TOKEN_PATH)
+        info('Token Deleted')
+    else:
+        info('No token found')
+
+
 def request_auth(code):
     """Goes out and requests user authentication page
 
     Arguments:
         code {string} -- Auth code provided by Pocket servers
     """
-
     url = 'https://getpocket.com/auth/authorize?request_token={}&redirect_url={}'.format(
         code, REDIRECT_URL)
     webbrowser.open(url)
@@ -65,7 +75,6 @@ def token_request(code):
     Returns:
         String -- Access token provided by Pocket server
     """
-
     payload = {
         'consumer_key': CONSUMER_KEY,
         'code': code
@@ -88,14 +97,13 @@ def authenticate():
     """
 
     code = get_auth_code()
-    print('Redirecting you to authorization page within your browser - If you have done this before the page will likely error with an invalid URL error. This is fine for you to proceed with.\n')
+    info('Redirecting you to authorization page within your browser - If you have done this before the page will likely error with an invalid URL error. This is fine for you to proceed with.\n')
     request_auth(code)
     sleep(10)
     token = token_request(code)
     with open(TOKEN_PATH, 'w') as file:
         file.write(token)
     return token
-
 
 def get_list():
     """
